@@ -1,21 +1,22 @@
 <h1>All Articles</h1>
 <table>
-  <thead>
-    <tr>
-      <td>ID</td>
-      <td>Title</td>
-      <td>Description</td>
-      <td>Actions</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.id %></td>
-      <td><%= article.title %></td>
-      <td><%= article.description %></td>
-      <td>Placeholder</td>
-    </tr>
-    <% end %>
-  </tbody>
+	<thead>
+		<tr>
+			<td><b>ID</b></td>
+			<td><b>Title</b></td>
+			<td><b>Description</b></td>
+			<td><b>Actions</b></td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @articles.each do |article| %>
+		<tr>
+			<td><%= article.id %></td>
+			<td><%= article.title %></td>
+			<td><%= article.description %></td>
+			<td>Placeholder</td>
+		</tr>
+		<% end %>
+		
+	</tbody>
 </table>
