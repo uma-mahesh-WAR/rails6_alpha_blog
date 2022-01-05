@@ -1,22 +1,22 @@
 <h1>All Articles</h1>
 <table>
-	<thead>
-		<tr>
-			<td><b>ID</b></td>
-			<td><b>Title</b></td>
-			<td><b>Description</b></td>
-			<td><b>Actions</b></td>
-		</tr>
-	</thead>
-	<tbody>
-		<% @articles.each do |article| %>
-		<tr>
-			<td><%= article.id %></td>
-			<td><%= article.title %></td>
-			<td><%= article.description %></td>
-			<td>Placeholder</td>
-		</tr>
-		<% end %>
-		
-	</tbody>
+  <thead>
+    <tr>
+      <td><b>S.No</b></td>
+      <td><b>Title</b></td>
+      <td><b>Description</b></td>
+      <td><b>Actions</b></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each_with_index do |article,index| %>
+      <tr>
+        <td><%= "#{index+1}" %></td>
+        <td><%= article.title %></td>
+        <td><%= article.description %></td>
+        <td><%= link_to "Show", article_path(article) %> | <%= link_to "Edit", edit_article_path(article)%> | <%= link_to "Delete", article_path(article),method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
+<p><%= link_to "Create new Article", new_article_path %></p>
