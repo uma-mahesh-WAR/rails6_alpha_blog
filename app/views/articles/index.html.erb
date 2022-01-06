@@ -6,7 +6,7 @@
 			<% @articles.each_with_index do |article,index| %>
 				<div class="card text-center">
 					<div class="card-header">
-						by <%= article.author %>
+						by 
 					</div>
 					<div class="card-body">
 						<h5 class="card-title"><%= link_to "#{article.title}", article_path(article),class:"" %></h5>

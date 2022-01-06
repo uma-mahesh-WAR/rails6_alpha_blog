@@ -15,6 +15,7 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
+		@article.user=User.first
 		if @article.save
 			flash[:notice] = 'Article created successfully'
 			redirect_to article_path(@article)
@@ -24,17 +25,16 @@ class ArticlesController < ApplicationController
 	end
 
 	def update
-		# if @article.update(article_params)
-		# 	flash[:notice] = 'Article updated successfully'
-		# 	redirect_to @article
-		# else
-		# 	render 'edit'
-		# end
-		redirect_to articles_path
+		if @article.update(article_params)
+			flash[:notice] = 'Article updated successfully'
+			redirect_to @article
+		else
+			render 'edit'
+		end
 	end
 
 	def destroy
-		# @article.destroy
+		@article.destroy
 		redirect_to articles_path
 	end
 
@@ -45,6 +45,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def article_params
-		params.require(:article).permit(:title, :description, :author)
+		params.require(:article).permit(:title, :description)
 	end
 end
