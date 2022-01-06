@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
 	before_action :set_article, only: %i[show edit update destroy]
 
 	def index
-		@articles = Article.all
+		@articles = Article.all.reverse_order
 	end
 
 	def show; end
@@ -44,6 +44,6 @@ class ArticlesController < ApplicationController
 	end
 
 	def article_params
-		params.require(:article).permit(:title, :description)
+		params.require(:article).permit(:title, :description, :author)
 	end
 end

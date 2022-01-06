@@ -1,6 +1,21 @@
-<h1>Article Details</h1>
-<p><strong>Title: </strong><%= @article.title %></p>
-<p><strong>Description: </strong><%= @article.description %></p>
-<p><%= link_to "Edit", edit_article_path(@article) %></p>
-<p><%= link_to "Delete", article_path(@article),method: :delete, data: { confirm: 'Are you sure?' } %></p>
-<p><%= link_to "Return to articles listing", articles_path %></p>
+
+<h1 class="text-center"><%= @article.title%></h1>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col-lg-6 col-md-8 col-sm-12">
+			<div class="card text-center">
+				<div class="card-header">
+					by <%= @article.author %>
+				</div>
+				<div class="card-body">
+					<p class="card-text"><%= simple_format(@article.description) %></p>
+					<p><%= link_to "Edit", edit_article_path(@article),class:"btn btn-outline-primary"%>  <%= link_to "Delete", article_path(@article),class:"btn btn-outline-danger",method: :delete, data: { confirm: 'Are you sure?' } %></p>
+				</div>
+				<div class="card-footer text-muted">
+					<small>created <%= time_ago_in_words(@article.created_at)%> ago, updated <%= time_ago_in_words(@article.updated_at)%> ago</small>
+				</div>
+			</div>
+			<%= link_to 'Return to articles listing', articles_path, class: "btn btn-info", style:"margin:10px" %>
+		</div>
+	</div>
+</div>
