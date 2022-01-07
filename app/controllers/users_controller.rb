@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
+
+	def index
+		@users=User.all
+	end
+	
+
 	def new
 		@user = User.new
+	end
+
+	def show
+		@user = User.find(params[:id])
+		@articles = @user.articles
 	end
 
 	def edit
@@ -11,7 +22,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		if @user.update(user_params)
 			flash[:notice] = 'Profile updated successfully'
-      redirect_to articles_path
+      redirect_to @user
 		else
 			render 'edit'
 		end
@@ -24,6 +35,16 @@ class UsersController < ApplicationController
 			redirect_to articles_path
 		else
 			render 'new'
+		end
+	end
+
+	def destroy
+		@user=User.find(params[:id])
+		if @user.destroy
+			flash[:notice]="User profile deleted successfully"
+			redirect_to root_path
+		else
+			render 'index'
 		end
 	end
 

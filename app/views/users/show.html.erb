@@ -1,0 +1,14 @@
+<div class="container">
+	<h1  class="text-center mt-4"><%= @user.username %>'s profile</h1>
+	<%= gravatar_for @user,size:150 %>
+	<p class="text-center mt-4"><%= link_to "Edit Profile", edit_user_path(@user),class:"btn btn-outline-primary"%>  <%= link_to "Delete Profile", user_path(@user),class:"btn btn-outline-danger",method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	<h3 class="text-center mt-4">Articles</h3>
+	<div class="row justify-content-md-center">
+		<div class="col-lg-6 col-md-8 col-sm-12">
+
+			<% @articles.each_with_index do |article,index| %>
+				<%= render 'articles/article',article:article %>
+			<% end %>
+		</div>
+	</div>
+</div>
