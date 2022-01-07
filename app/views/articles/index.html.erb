@@ -2,10 +2,20 @@
 <div class="container">
 	<div class="row justify-content-md-center">
 		<div class="col-lg-6 col-md-8 col-sm-12">
-		<%= link_to "Create new Article", new_article_path,class:"btn btn-success crte_btn" %>
+			<%= link_to "Create new Article", new_article_path,class:"btn btn-success crte_btn" %>
+			<div class="flickr_pagination">
+				<%= will_paginate @articles, :container => false %>
+			</div>
 			<% @articles.each_with_index do |article,index| %>
 				<%= render 'article',article:article %>
 			<% end %>
+
+			<div class="flickr_pagination">
+				<div class="page_info">
+					<%= page_entries_info @articles %>
+				</div>
+				<%= will_paginate @articles, :container => false %>
+			</div>
 		</div>
 	</div>
 </div>
