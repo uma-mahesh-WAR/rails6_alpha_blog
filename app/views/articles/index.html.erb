@@ -2,7 +2,9 @@
 <div class="container">
 	<div class="row justify-content-md-center">
 		<div class="col-lg-6 col-md-8 col-sm-12">
-			<%= link_to "Create new Article", new_article_path,class:"btn btn-success crte_btn" %>
+			<%if isLoggedin%>
+				<%= link_to "Create new Article", new_article_path,class:"btn btn-success crte_btn" %>
+			<%end%>
 			<div class="flickr_pagination">
 				<%= will_paginate @articles, :container => false %>
 			</div>

@@ -7,14 +7,16 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item dropdown">
-
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 						Articles Menu
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<li><%= link_to "Articles", articles_path, class:"dropdown-item" %></li>
-						<li><hr class="dropdown-divider"></li>
-						<li><%= link_to "Create new Article", new_article_path,class:"dropdown-item" %></li>
+						<%if isLoggedin%>
+							<li><hr class="dropdown-divider"></li>
+							<li><%= link_to "Create new Article", new_article_path,class:"dropdown-item" %></li>
+
+						<%end%>
 					</ul>
 				</li>
 				<li class="nav-item">
@@ -25,9 +27,20 @@
 				</li>
 			</ul>
 			<div class="d-flex">
-				<% if isLoggedin%>
-					<%= link_to current_user.username, user_path(current_user),class:"p-2", style:"text-decoration:none;color:white" %>
+				<% if isLoggedin %>
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<%= current_user.username %>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><%= link_to "View Profile", user_path(current_user), class:"dropdown-item" %></li>
+							<li><hr class="dropdown-divider"></li>
+							<li><%= link_to "Edit Profile", edit_user_path(current_user) ,class:"dropdown-item" %></li>
+						</ul>
+					</li>
 					<%= link_to "logout", logout_path, class:"btn btn-outline-danger",method: :delete %>
+					</ul>
 				<% else%>
 					<%= link_to "login", login_path, class:"btn btn-outline-info m-1" %>
 					<%= link_to "SignUp", signup_path, class:"btn btn-success m-1" %>
