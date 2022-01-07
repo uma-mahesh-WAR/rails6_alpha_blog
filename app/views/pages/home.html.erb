@@ -2,6 +2,8 @@
 	<div class="mt-4 p-5 bg-primary text-white rounded jumbotron">
 		<h1>Alpha Blog</h1>
 		<p>Blog your way</p>
+		<% if !(isLoggedin) %>
 		<%= link_to "SignUp", signup_path, class:"btn btn-success" %>
+		<% end %>
 	</div>
 </div>

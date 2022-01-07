@@ -24,15 +24,15 @@
 					<%= link_to "About", about_path, class:"nav-link" %>
 				</li>
 			</ul>
-			<% if isLoggedin%>
-      <%= link_to @current_user.username, user_path(@current_user),class:"p-2", style:"text-decoration:none;color:white" %>
-			<%= link_to "logout", logout_path, class:"btn btn-outline-danger",method: :delete %>
-			<% else%>
-				<div class="d-flex">
+			<div class="d-flex">
+				<% if isLoggedin%>
+					<%= link_to current_user.username, user_path(current_user),class:"p-2", style:"text-decoration:none;color:white" %>
+					<%= link_to "logout", logout_path, class:"btn btn-outline-danger",method: :delete %>
+				<% else%>
 					<%= link_to "login", login_path, class:"btn btn-outline-info m-1" %>
 					<%= link_to "SignUp", signup_path, class:"btn btn-success m-1" %>
-				</div>
-			<% end%>
+				<% end%>
+			</div>
 		</div>
 	</div>
 </nav>
