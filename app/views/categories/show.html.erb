@@ -1,3 +1,23 @@
 <div class="container">
 	<h1  class="text-center mt-4"><%= @category.name %> category articles</h1>
+	
+	<div class="row justify-content-md-center">
+		<div class="col-lg-6 col-md-8 col-sm-12">
+		<p class="text-center"><% if isLoggedin && current_user.admin? %>
+			<%= link_to "Edit Category", edit_category_path(@category),class:"btn btn-outline-primary"%>  <%= link_to "Delete Category", category_path(@category),class:"btn btn-outline-danger",method: :delete, data: { confirm: 'Are you sure?' } %>
+		<%end%></p>
+			<div class="flickr_pagination">
+				<%= will_paginate @articles, :container => false %>
+			</div>
+			<% @articles.each_with_index do |article,index| %>
+				<%= render 'articles/article',article:article %>
+			<%end%>
+			<div class="flickr_pagination">
+				<div class="page_info">
+					<%= page_entries_info @articles %>
+				</div>
+				<%= will_paginate @articles, :container => false %>
+			</div>
+		</div>
+	</div>
 </div>

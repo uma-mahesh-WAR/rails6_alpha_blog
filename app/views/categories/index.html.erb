@@ -2,18 +2,23 @@
 	<h1  class="text-center mt-4">All Categories</h1>
 	<div class="row justify-content-md-center">
 		<div class="col-lg-6 col-md-8 col-sm-12">
-			<div class="flickr_pagination">
-				<%= will_paginate @articles, :container => false %>
-			</div>
 			<% @categories.each_with_index do |category,index| %>
 				<%= render "category", category:category %>
 			<% end %>
+			<%if isLoggedin && current_user.admin? %>
+			<div class="flickr_pagination">
+				<%= will_paginate @categoriesP, :container => false %>
+			</div>
+			<% @categoriesP.each_with_index do |category,index| %>
+				<%= render "categoriesfull", category:category %>
+			<% end %>
 			<div class="flickr_pagination">
 				<div class="page_info">
-					<%= page_entries_info @articles %>
+					<%= page_entries_info @categoriesP %>
 				</div>
-				<%= will_paginate @articles, :container => false %>
+				<%= will_paginate @categoriesP, :container => false %>
 			</div>
+			<%end%>
 		</div>
 	</div>
 </div>
