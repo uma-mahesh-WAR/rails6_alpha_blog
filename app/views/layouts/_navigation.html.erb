@@ -19,6 +19,19 @@
 						<%end%>
 					</ul>
 				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Categories
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<li><%= link_to "View Categories", categories_path, class:"dropdown-item" %></li>
+						<%if isLoggedin && current_user.admin?%>
+							<li><hr class="dropdown-divider"></li>
+							<li><%= link_to "Create new Category", new_category_path,class:"dropdown-item" %></li>
+
+						<%end%>
+					</ul>
+				</li>
 				<li class="nav-item">
 					<%= link_to "Bloggers", users_path, class:"nav-link" %>
 				</li>
